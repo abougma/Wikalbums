@@ -1,0 +1,32 @@
+        {% extends 'base.html.twig' %}
+
+        {% block title %}Mon Album{{ parent() }}{% endblock %}
+
+        {% block body %}
+            <h1>Les Artists</h1>
+            <hr>
+            <div class="row">
+                {% for artist in artists %}
+                    <div class="col-3 mb-4">
+                        <div class="card">
+                            <img src="{{ asset('img/artists/' ~ artist.photo )}}" class="card-img-top" alt="" style=" 'filter: grayscale(100%);' }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ artist.name }}</h5>
+                                <p class="card-text">
+                                    <b>Nom</b>: {{ artist.name}}<br>
+                                    <b>Albums</b>: {% for album in artist.albums %}
+                                        {{ album.name }} {{ not loop.last ? ', ' }}
+                                    {% endfor %}
+                                    <span style=""></span>
+                                        <br>
+                                    <span class="text-muted">
+                                </p>
+                                <a class="btn btn-primary" href="{{ path('app_artist_show', {'id': artist.id}) }}" >
+                                    Voir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}

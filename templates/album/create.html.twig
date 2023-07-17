@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %} Ajout d'un nouvel album{% endblock %}
+{% block body %}
+    <h1>Nouvel Album</h1>
+    <hr>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Ajouter" class="btn btn-primary">
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Album{{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Les Artists</h1>
+    <hr>
+    <div class="row">
+            <div class="col-3 mb-4">
+                <div class="card">
+                    <img src="{{ asset('img/artists/' ~ artist.photo )}}" class="card-img-top" alt="" style=" 'filter: grayscale(100%);' }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ artist.name }}</h5>
+                        <p class="card-text">
+                            <b>Nom</b>: {{ artist.name}}<br>
+                            <b>Pays</b>:{{ artist.country }}<br>
+                            <b>Née le</b>:{{ artist.dateOfBirth | date('d/m/Y') }}<br>
+                            <b>Albums</b>: {% for album in artist.albums %}
+                                {{ album.name }} {{ not loop.last ? ', ' }}
+                            {% endfor %}
+                            <span style=""></span>
+                            <br>
+                            <span class="text-muted">
+                        </p>
+                        <a class="btn btn-danger" href="{{ path('app_artist_delete',{'id': artist.id}) }}" >
+                            Supprimer
+                        </a>
+                        <a class="btn btn-primary" href="{{ path('app_artist_update',{'id': artist.id}) }}" >
+                            Modifier
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
